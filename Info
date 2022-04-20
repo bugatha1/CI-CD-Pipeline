@@ -1,4 +1,18 @@
 
+
+1. Build the model
+     Build the model artifacts
+     Send the artifacts to long-term storage
+     Run basic checks (smoke tests/sanity checks)
+     Generate fairness and explainability reports
+2. Deploy to a test environment
+     Run tests to validate ML performance, computational performance
+     Validate manually
+3. Deploy to production environment
+     Deploy the model as canary
+     Fully deploy the model
+
+
 https://dvc.org/
 Open-source Version Control System for Machine Learning Projects.
 
@@ -6,6 +20,10 @@ While Git is used to store and version code,
 DVC does the same for data and model files. 
 Git can store code locally and also on a hosting service like GitHub, Bitbucket, or GitLab. 
 Likewise, DVC uses a remote repository to store all your data and models.
+
+While Git is appropriate for code, it was not designed to store other types of assets common in data science workflows, 
+such as large binary files (for example, trained model weights), or to version the data itself. 
+Data versioning is a more complex topic with numerous solutions, including Git extensions, file formats, databases, etc.
 
 https://learning.oreilly.com/scenarios/dvc-creating-a/9781492080206/
 
