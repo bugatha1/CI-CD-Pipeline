@@ -1,0 +1,29 @@
+
+https://dvc.org/
+Open-source Version Control System for Machine Learning Projects.
+
+While Git is used to store and version code, 
+DVC does the same for data and model files. 
+Git can store code locally and also on a hosting service like GitHub, Bitbucket, or GitLab. 
+Likewise, DVC uses a remote repository to store all your data and models.
+
+https://learning.oreilly.com/scenarios/dvc-creating-a/9781492080206/
+
+DVC uses this .dvc file to track metadata about the file's real location, which we can commit to Git without having to manage the potentially 
+large file in source control
+
+ex : dvc init
+     dvc push
+     dvc pull
+     
+     dvc run -d data/diabetes.txt -d src/evaluate.py -d model.pkl -m metrics.json python src/evaluate.py
+     The dependencies for this step are the data file, the source code, and the model exported by the previous step. 
+     The -m argument is a special kind of output used by DVC to track metrics. Our src/evaluate.py script creates a metrics.json file that calculates the Root Mean Squared Error 
+     and the R2 Score for the model in our test dataset. This will create a metrics.json.dvc file which we can again add and commit to Git.
+     We can also push the output files (model and metrics) to the remote storage:
+     
+     Now our pipeline is tracked in source control. Run the dvc pipeline command to show the steps and outputs of our Machine Learning pipeline:
+     we want to reproduce the entire ML pipeline, by running:
+
+dvc repro metrics.json.dvc
+By reproducing the last recorded step, DVC will notice that the previous outputs are not present and will re-execute them in the right order. When it finishes, you should be able to see the model.pkl and metrics.json file are created again:
